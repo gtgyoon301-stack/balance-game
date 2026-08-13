@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>카네기 vs 니체 — 당신의 균형은?</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Song+Myung&family=Black+Han+Sans&family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Noto+Sans+KR:wght@400;500;700;800;900&display=swap" rel="stylesheet">
 <style>
   :root{
     --niet-bg:#a9c6d8;
@@ -57,36 +57,52 @@
     margin:0 auto 28px; box-shadow:0 10px 30px rgba(0,0,0,0.15);
   }
   .split-badge .half{flex:1; display:flex; align-items:center; justify-content:center;
-    font-family:'Song Myung', serif; font-size:15px; letter-spacing:1px;}
+    font-family:'Noto Sans KR', sans-serif; font-weight:800; font-size:15px; letter-spacing:1px;}
   .split-badge .l{background:var(--niet-bg); color:var(--niet-red);}
   .split-badge .r{background:var(--carn-bg); color:var(--carn-orange);}
   .eyebrow{
-    font-size:12px; letter-spacing:4px; color:#9a8f7a; font-weight:700; margin-bottom:14px;
+    font-size:12px; letter-spacing:4px; color:#6b6046; font-weight:800; margin-bottom:14px;
   }
   h1.title{
-    font-family:'Song Myung', serif;
-    font-size:clamp(28px,7vw,42px);
-    line-height:1.35;
+    font-family:'Noto Sans KR', sans-serif;
+    font-weight:900;
+    font-size:clamp(26px,6.6vw,38px);
+    line-height:1.4;
     margin-bottom:14px;
+    word-break:keep-all;
   }
   h1.title span{color:var(--niet-red);}
-  h1.title b{color:var(--carn-orange); font-weight:400;}
+  h1.title b{color:var(--carn-orange); font-weight:900;}
   .sub{
-    font-size:14.5px; color:#5c5346; line-height:1.7; max-width:340px; margin:0 auto 34px;
+    font-size:14.5px; color:#4d4536; line-height:1.7; max-width:340px; margin:0 auto 34px;
+    word-break:keep-all;
   }
   .cta{
-    font-family:'Black Han Sans', sans-serif;
+    font-family:'Noto Sans KR', sans-serif;
+    font-weight:800;
     background:var(--ink); color:var(--paper);
-    border:none; padding:16px 40px; font-size:16px; letter-spacing:1px;
+    border:none; padding:16px 40px; font-size:16px; letter-spacing:0px;
     border-radius:100px; cursor:pointer;
     box-shadow:0 8px 24px rgba(0,0,0,0.25);
     transition:transform .15s ease;
   }
   .cta:active{transform:scale(0.96);}
-  .meta{margin-top:22px; font-size:12px; color:#a49b89;}
+  .meta{margin-top:22px; font-size:12px; color:#7a6f56; font-weight:600;}
 
   /* ---------- QUIZ ---------- */
   #quiz{background:var(--paper);}
+
+  .top-ticker{
+    display:flex; width:100%; flex-shrink:0;
+  }
+  .tt{
+    flex:1; padding:14px 18px; font-size:12px; font-weight:800; line-height:1.4;
+    word-break:keep-all;
+  }
+  .tt b{font-weight:900;}
+  .tt.n{background:var(--niet-bg); color:#7a2418; text-align:right;}
+  .tt.c{background:var(--carn-bg); color:#ff8058; text-align:left;}
+
   .progress-row{
     display:flex; gap:6px; padding:22px 24px 0;
   }
@@ -97,35 +113,50 @@
   .dot.done.n i{background:var(--niet-red);}
 
   .qnum{
-    text-align:center; font-size:12px; letter-spacing:3px; color:#9a8f7a; font-weight:700;
+    text-align:center; font-size:12px; letter-spacing:3px; color:#6b6046; font-weight:800;
     padding:18px 0 6px;
   }
   .qtext{
-    font-family:'Song Myung', serif;
-    text-align:center; font-size:clamp(20px,5.6vw,25px); line-height:1.5;
+    font-family:'Noto Sans KR', sans-serif;
+    font-weight:800;
+    text-align:center; font-size:clamp(19px,5.2vw,23px); line-height:1.5;
     padding:0 26px 22px; color:var(--ink);
+    word-break:keep-all;
   }
 
   .divide-wrap{
     flex:1; position:relative; display:flex; overflow:hidden;
+  }
+  @media (min-width:640px){
+    .divide-wrap{
+      flex:none;
+      width:100%;
+      max-width:460px;
+      height:400px;
+      margin:10px auto 0;
+      border-radius:24px;
+      box-shadow:0 20px 50px rgba(0,0,0,0.2);
+    }
   }
   .opt{
     position:relative; flex:1; display:flex; align-items:center; justify-content:center;
     cursor:pointer; overflow:hidden; transition:flex-basis .5s cubic-bezier(.22,1,.36,1);
     padding:20px;
   }
-  .opt.left{background:linear-gradient(160deg, var(--niet-bg), var(--niet-bg-deep)); color:#5a2a22;}
-  .opt.right{background:linear-gradient(160deg, var(--carn-bg), var(--carn-bg-deep)); color:var(--carn-orange);}
+  .opt.left{background:linear-gradient(160deg, var(--niet-bg), var(--niet-bg-deep)); color:#3d1c16;}
+  .opt.right{background:linear-gradient(160deg, var(--carn-bg), var(--carn-bg-deep)); color:#ff8058;}
   .opt .tag{
-    position:absolute; top:16px; font-size:11px; letter-spacing:2px; font-weight:700; opacity:.75;
+    position:absolute; top:16px; font-size:11px; letter-spacing:2px; font-weight:800; opacity:.9;
   }
-  .opt.left .tag{left:16px; color:var(--niet-red);}
-  .opt.right .tag{right:16px; color:var(--carn-orange);}
+  .opt.left .tag{left:16px; color:#8a291d;}
+  .opt.right .tag{right:16px; color:#ff8058;}
   .opt .label{
-    font-family:'Song Myung', serif;
-    font-size:clamp(17px,4.6vw,21px);
+    font-family:'Noto Sans KR', sans-serif;
+    font-size:clamp(16px,4.2vw,19px);
     text-align:center; line-height:1.5; max-width:220px;
     z-index:2;
+    font-weight:700;
+    word-break:keep-all;
   }
   .opt::after{
     content:''; position:absolute; inset:0; background:rgba(0,0,0,0.12); opacity:0; transition:opacity .2s;
@@ -147,15 +178,19 @@
 
   /* ---------- RESULT ---------- */
   #result{background:var(--paper); overflow-y:auto;}
-  .res-inner{padding:34px 26px 50px; max-width:440px; margin:0 auto; text-align:center;}
-  .res-eyebrow{font-size:12px; letter-spacing:3px; color:#9a8f7a; font-weight:700; margin-bottom:10px;}
+  .res-inner{padding:34px 16px 50px; max-width:440px; margin:0 auto; text-align:center;}
+  .res-eyebrow{font-size:12px; letter-spacing:3px; color:#6b6046; font-weight:800; margin-bottom:10px;}
   .res-headline{
-    font-family:'Song Myung', serif; font-size:clamp(24px,6.4vw,30px); line-height:1.4; margin-bottom:22px;
+    font-family:'Noto Sans KR', sans-serif; font-weight:900;
+    font-size:clamp(22px,5.8vw,27px); line-height:1.45; margin-bottom:22px;
+    word-break:keep-all;
   }
   .res-headline b{color:var(--carn-orange);}
   .res-headline em{color:var(--niet-red); font-style:normal;}
   .res-desc{
-    font-size:13.5px; color:#6b6252; line-height:1.75; max-width:340px; margin:0 auto 26px;
+    font-size:11.5px; color:#4d4536; line-height:1.9; width:100%; margin:0 auto 26px;
+    word-break:keep-all;
+    white-space:pre-line;
   }
 
   .gauge{
@@ -163,9 +198,9 @@
     box-shadow:0 8px 24px rgba(0,0,0,0.15);
   }
   .gauge .g{display:flex; align-items:center; justify-content:center; font-family:'Black Han Sans',sans-serif; font-size:15px; transition:flex-basis 1s cubic-bezier(.22,1,.36,1);}
-  .gauge .gn{background:var(--niet-bg); color:var(--niet-red); flex-basis:50%;}
-  .gauge .gc{background:var(--carn-bg); color:var(--carn-orange); flex-basis:50%;}
-  .gauge-labels{display:flex; justify-content:space-between; font-size:11px; color:#8a8069; letter-spacing:1px; margin-bottom:30px;}
+  .gauge .gn{background:var(--niet-bg); color:#3d1c16; flex-basis:50%;}
+  .gauge .gc{background:var(--carn-bg); color:#ff8058; flex-basis:50%;}
+  .gauge-labels{display:flex; justify-content:space-between; font-size:11px; color:#4d4536; font-weight:700; letter-spacing:1px; margin-bottom:30px;}
 
   .book-card{
     display:flex; gap:14px; align-items:center; text-align:left;
@@ -175,25 +210,26 @@
   .book-cover{
     width:58px; height:82px; border-radius:6px; flex-shrink:0;
     display:flex; align-items:center; justify-content:center; text-align:center;
-    font-family:'Song Myung', serif; font-size:11px; line-height:1.3; padding:6px;
+    font-family:'Noto Sans KR', sans-serif; font-size:10.5px; line-height:1.35; padding:6px;
+    font-weight:800; word-break:keep-all;
   }
-  .book-cover.n{background:linear-gradient(160deg, var(--niet-bg), var(--niet-bg-deep)); color:var(--niet-red);}
-  .book-cover.c{background:linear-gradient(160deg, var(--carn-bg), var(--carn-bg-deep)); color:var(--carn-orange);}
-  .book-info .bname{font-family:'Song Myung', serif; font-size:15px; margin-bottom:4px;}
-  .book-info .bquote{font-size:12.5px; color:#6b6252; line-height:1.6;}
-  .book-info .btag{display:inline-block; margin-top:6px; font-size:10.5px; font-weight:700; letter-spacing:1px; padding:2px 8px; border-radius:100px;}
-  .btag.n{background:var(--niet-bg); color:var(--niet-red);}
-  .btag.c{background:var(--carn-bg); color:var(--carn-orange);}
+  .book-cover.n{background:linear-gradient(160deg, var(--niet-bg), var(--niet-bg-deep)); color:#3d1c16;}
+  .book-cover.c{background:linear-gradient(160deg, var(--carn-bg), var(--carn-bg-deep)); color:#ff8058;}
+  .book-info .bname{font-family:'Noto Sans KR', sans-serif; font-weight:800; font-size:15px; margin-bottom:4px; word-break:keep-all;}
+  .book-info .bquote{font-size:12.5px; color:#4d4536; line-height:1.6;}
+  .book-info .btag{display:inline-block; margin-top:6px; font-size:10.5px; font-weight:800; letter-spacing:1px; padding:2px 8px; border-radius:100px;}
+  .btag.n{background:var(--niet-bg); color:#7a2418;}
+  .btag.c{background:var(--carn-bg); color:#ff8058;}
 
   .buy-row{display:flex; gap:10px; margin-top:22px;}
   .buy{
-    flex:1; padding:14px 8px; border-radius:12px; border:none; font-family:'Noto Sans KR'; font-weight:700; font-size:13px; cursor:pointer;
+    flex:1; padding:14px 8px; border-radius:12px; border:none; font-family:'Noto Sans KR'; font-weight:800; font-size:13px; cursor:pointer;
   }
   .buy.n{background:var(--niet-red); color:#fff;}
   .buy.c{background:var(--carn-orange); color:#fff;}
 
   .restart{
-    margin-top:26px; background:none; border:1.5px solid #cfc4ac; color:#8a8069;
+    margin-top:26px; background:none; border:1.5px solid #b5a888; color:#5c5140; font-weight:700;
     padding:10px 22px; border-radius:100px; font-size:12.5px; cursor:pointer;
   }
 
@@ -201,7 +237,7 @@
     background:#fff; border:1px solid #eee2cc; border-radius:16px; padding:20px 18px;
     margin-bottom:22px; box-shadow:0 6px 20px rgba(0,0,0,0.06); text-align:left;
   }
-  .mbti-eyebrow{font-size:11px; letter-spacing:2px; color:#9a8f7a; font-weight:700; margin-bottom:10px; text-align:center;}
+  .mbti-eyebrow{font-size:11px; letter-spacing:2px; color:#6b6046; font-weight:800; margin-bottom:10px; text-align:center;}
   .mbti-type{
     font-family:'Black Han Sans', sans-serif; font-size:34px; letter-spacing:6px;
     text-align:center; margin-bottom:14px;
@@ -210,10 +246,10 @@
   }
   .mbti-lines{list-style:none; display:flex; flex-direction:column; gap:6px; margin-bottom:10px;}
   .mbti-lines li{
-    font-size:12.5px; color:#5c5346; padding-left:16px; position:relative; line-height:1.6;
+    font-size:12.5px; color:#4d4536; padding-left:16px; position:relative; line-height:1.6;
   }
-  .mbti-lines li::before{content:'—'; position:absolute; left:0; color:#c9bea1;}
-  .mbti-disclaimer{font-size:10.5px; color:#b0a68f; text-align:center; margin-top:4px;}
+  .mbti-lines li::before{content:'—'; position:absolute; left:0; color:#a89877;}
+  .mbti-disclaimer{font-size:10.5px; color:#8a7d61; text-align:center; margin-top:4px;}
 
   @media (prefers-reduced-motion: reduce){
     *{transition:none !important;}
@@ -225,16 +261,20 @@
 
   <!-- INTRO -->
   <div class="screen active" id="intro">
-    <div class="split-badge"><div class="half l">불안</div><div class="half r">관계</div></div>
-    <div class="eyebrow">BALANCE TEST</div>
-    <h1 class="title">당신은<br><b>카네기</b>형 인간인가,<br><span>니체</span>형 인간인가</h1>
-    <p class="sub">8개의 순간, 둘 중 하나만 고를 수 있다면<br>당신은 관계를 택할까, 자신을 택할까</p>
-    <button class="cta" onclick="startQuiz()">밸런스 게임 시작</button>
-    <div class="meta">선택은 저장되지 않습니다 · 소요시간 1분</div>
+    <div class="split-badge"><div class="half l">고독</div><div class="half r">인싸력</div></div>
+    <div class="eyebrow">인생 밸런스 게임</div>
+    <h1 class="title">당신은<br><b>카네기</b>형 인간?<br>아니면 <span>니체</span>형 인간?</h1>
+    <p class="sub">인생 갈림길 8번, 도망칠 곳은 없다<br>당신의 선택은 관계일까, 나 자신일까</p>
+    <button class="cta" onclick="startQuiz()">내 정체 밝히러 가기</button>
+    <div class="meta">저장 안 되니 맘껏 솔직하게 · 1분 컷</div>
   </div>
 
   <!-- QUIZ -->
   <div class="screen" id="quiz">
+    <div class="top-ticker">
+      <div class="tt n">니체 — <b id="niTicker"></b></div>
+      <div class="tt c">카네기 — <b id="caTicker"></b></div>
+    </div>
     <div class="progress-row" id="progressRow"></div>
     <div class="qnum" id="qnum">Q1 / 8</div>
     <div class="qtext" id="qtext"></div>
@@ -256,7 +296,7 @@
   <!-- RESULT -->
   <div class="screen" id="result">
     <div class="res-inner">
-      <div class="res-eyebrow">YOUR BALANCE</div>
+      <div class="res-eyebrow">당신의 정체는...</div>
       <h1 class="res-headline" id="resHeadline"></h1>
       <p class="res-desc" id="resDesc"></p>
 
@@ -292,11 +332,11 @@
       </div>
 
       <div class="buy-row">
-        <button class="buy n" onclick="alert('니체 도서 페이지로 이동')">니체 책 보기</button>
-        <button class="buy c" onclick="alert('카네기 도서 페이지로 이동')">카네기 책 보기</button>
+        <button class="buy n" onclick="window.open('https://product.kyobobook.co.kr/detail/S000220041675','_blank')">니체 책 만나러 가기</button>
+        <button class="buy c" onclick="window.open('https://product.kyobobook.co.kr/detail/S000220634221','_blank')">카네기 책 만나러 가기</button>
       </div>
 
-      <button class="restart" onclick="restart()">다시 하기</button>
+      <button class="restart" onclick="restart()">한 판 더 해보기</button>
     </div>
   </div>
 
@@ -304,14 +344,35 @@
 
 <script>
 const questions = [
-  {q:"갈등이 생겼을 때, 나는", n:"내 신념을 지킨다", c:"상대를 먼저 이해하려 한다", axis:'EI', nL:'I', cL:'E'},
-  {q:"불안한 밤엔", n:"혼자 그 감정을 마주한다", c:"누군가와 대화하며 푼다", axis:'SN', nL:'N', cL:'S'},
-  {q:"칭찬을 받으면", n:"당당히 받아들인다", c:"겸손하게 되돌려준다", axis:'TF', nL:'T', cL:'F'},
-  {q:"실패했을 때 나를 다잡는 법", n:"나를 더 단단하게 만든다", c:"관계부터 먼저 챙긴다", axis:'JP', nL:'J', cL:'P'},
-  {q:"타인의 시선은", n:"신경 쓰지 않는다", c:"신경 쓰고 맞춰간다", axis:'EI', nL:'I', cL:'E'},
-  {q:"논쟁이 벌어지면", n:"진실을 위해 끝까지 말한다", c:"이기기보다 상대 기분을 살핀다", axis:'SN', nL:'N', cL:'S'},
-  {q:"새로운 사람을 만나면", n:"굳이 애쓰지 않는다", c:"먼저 다가가 이름을 기억한다", axis:'TF', nL:'T', cL:'F'},
-  {q:"힘든 하루 끝엔", n:"스스로 견뎌낸다", c:"누군가에게 털어놓는다", axis:'JP', nL:'J', cL:'P'}
+  {q:"단톡방에서 논쟁 터졌다, 나는", n:"내 생각이 맞으니 끝까지 간다", c:"일단 분위기부터 살핀다", axis:'EI', nL:'I', cL:'E'},
+  {q:"새벽 3시, 잠 안 오고 불안하면", n:"혼자 그 감정과 눈싸움한다", c:"누구라도 붙잡고 카톡한다", axis:'SN', nL:'N', cL:'S'},
+  {q:"누가 칭찬해주면 나는", n:"당연하지, 하며 어깨 편다", c:"아유 아니에요, 손사래친다", axis:'TF', nL:'T', cL:'F'},
+  {q:"완전 망한 하루 끝, 나를 다잡는 법", n:"이 악물고 더 독해진다", c:"일단 사람들부터 챙기고 본다", axis:'JP', nL:'J', cL:'P'},
+  {q:"남들이 나를 어떻게 볼지", n:"1도 신경 안 쓴다", c:"은근히 계속 신경쓰인다", axis:'EI', nL:'I', cL:'E'},
+  {q:"친구가 확실히 틀렸다, 그럼 나는", n:"팩트로 끝까지 짚어준다", c:"굳이? 그냥 넘어간다", axis:'SN', nL:'N', cL:'S'},
+  {q:"낯선 사람 가득한 모임에 가면", n:"구석에서 조용히 관찰한다", c:"먼저 다가가 이름부터 외운다", axis:'TF', nL:'T', cL:'F'},
+  {q:"진짜 힘든 하루 끝엔", n:"혼자 버티고 이겨낸다", c:"누군가 붙잡고 다 털어놓는다", axis:'JP', nL:'J', cL:'P'}
+];
+
+const niQuotes = [
+  "진실 앞엔 분위기 따위 없다",
+  "불안이야말로 살아있다는 증거",
+  "칭찬 따위, 이미 알고 있었다",
+  "무너진 자리에서 더 강해진다",
+  "타인의 시선? 신경 끄시게",
+  "침묵은 거짓에 대한 동의다",
+  "군중 속의 고독을 즐겨라",
+  "혼자 버티는 밤이 널 만든다"
+];
+const caQuotes = [
+  "일단 웃으면서 들어봐요",
+  "혼자 앓지 말고 전화 한 통 해요",
+  "그 칭찬, 감사히 받아도 돼요",
+  "사람부터 챙기면 답이 보여요",
+  "사람들 마음, 살짝 신경 써봐요",
+  "굳이 이기려 하지 않아도 돼요",
+  "이름 한 번 불러주면 마음 열려요",
+  "털어놓으면 반은 풀려요"
 ];
 
 let current = 0;
@@ -346,6 +407,8 @@ function renderQuestion(){
   $('qtext').textContent = item.q;
   $('labelLeft').textContent = item.n;
   $('labelRight').textContent = item.c;
+  $('niTicker').textContent = niQuotes[current];
+  $('caTicker').textContent = caQuotes[current];
   $('vsMark').style.opacity = '1';
   const L = $('optLeft'), R = $('optRight');
   L.className = 'opt left';
@@ -390,10 +453,10 @@ function choose(side){
 }
 
 const mbtiFlavor = {
-  I:'혼자 있는 시간에서 에너지를 얻어요', E:'사람 속에서 에너지를 얻어요',
-  N:'직관과 의미를 먼저 봐요', S:'눈앞의 현실을 먼저 챙겨요',
-  T:'논리와 기준으로 판단해요', F:'사람의 마음을 먼저 살펴요',
-  J:'계획대로 정리하고 싶어해요', P:'상황에 맞춰 유연하게 움직여요'
+  I:'혼자 있을 때 완전 충전됨', E:'사람 속에 있어야 힘이 남',
+  N:'직관과 의미부터 먼저 봄', S:'눈앞의 현실부터 챙김',
+  T:'팩트와 논리로 딱 잘라 판단', F:'사람 마음부터 살피고 봄',
+  J:'계획대로 딱딱 정리해야 편함', P:'그때그때 몸이 먼저 반응함'
 };
 
 function computeMbti(){
@@ -410,22 +473,22 @@ function computeMbti(){
 
 const resultCopy = {
   niet: {
-    headline: '당신은 <em>니체</em>형 인간',
-    desc: '흔들릴 땐 남에게 기대기보다 스스로 답을 찾는 편이에요. 타인의 평가보다 나만의 기준이 더 중요하고, 불안조차 나를 성장시키는 재료로 받아들일 줄 아는 사람입니다. 다만 그 단단함이 때로는 곁을 외롭게 만들기도 해요.',
-    ni: '지금 당신에게 필요한 건 스스로를 견디는 힘. 불안을 없애려 하지 말고, 그 곁에 앉아보세요.',
-    ca: '가끔은 마음을 열어도 괜찮아요. 곁에 있는 사람에게 먼저 손 내밀어보는 하루를 권합니다.'
+    headline: '당신, <em>니체</em> 환생설 있음',
+    desc: '흔들릴 때 남한테 안 기대고 혼자 답을 찾아버리는 타입이에요.\n남 시선 따위 가볍게 씹어드시고, 불안조차 성장 재료로 써버리는 사람.\n근데 그 단단함, 가끔은 옆사람을 좀 외롭게 만든다는 것도 알고 계시죠?',
+    ni: '지금 필요한 건 버티는 힘 하나. 불안을 없애려 애쓰지 말고 그냥 옆에 앉혀두세요.',
+    ca: '가끔은 못 이기는 척 마음 좀 열어도 안 죽어요. 오늘 하루는 먼저 손 내밀어보기.'
   },
   carn: {
-    headline: '당신은 <b>카네기</b>형 인간',
-    desc: '사람의 마음을 읽고 먼저 다가가는 데 익숙한 사람이에요. 관계 속에서 안정을 얻고, 누군가를 이해하고 배려하는 데서 나다움을 찾습니다. 다만 상대를 살피는 마음이 커질수록 정작 나 자신은 뒤로 미뤄두게 되진 않았나요.',
-    ca: '사람을 살피는 마음이 당신의 힘입니다. 오늘도 누군가의 이름을 기억해주세요.',
-    ni: '가끔은 타인의 시선을 내려놓고, 온전히 나 자신에게 집중하는 시간도 필요해요.'
+    headline: '당신은 인간관계 만렙, <b>카네기</b>형',
+    desc: '사람 마음 읽는 데 도가 튼 타입이에요.\n관계 속에서 에너지를 얻고, 누군가를 챙기다 보면 저절로 내가 채워지는 사람이죠.\n근데 남 살피다가 정작 나는 늘 뒷전 아니었어요?',
+    ca: '사람 챙기는 그 다정함, 그게 당신 최고의 무기예요. 오늘도 누군가의 이름 하나 기억해주세요.',
+    ni: '가끔은 남 시선 훅 내려놓고, 오롯이 나한테만 집중하는 시간도 필요해요.'
   },
   balance: {
-    headline: '당신은 <em>니체</em>와 <b>카네기</b> 사이',
-    desc: '상황에 따라 자신을 지키기도, 곁을 먼저 챙기기도 하는 균형 잡힌 사람이에요. 혼자 견뎌야 할 때와 누군가에게 기대야 할 때를 비교적 잘 구분할 줄 압니다. 두 태도 모두 이미 당신 안에 있으니, 상황에 맞게 꺼내 쓰면 됩니다.',
-    ni: '자신을 지키는 단단함,',
-    ca: '사람을 향한 다정함, 둘 다 이미 당신 안에 있습니다.'
+    headline: '당신은 <em>니체</em>와 <b>카네기</b> 그 어딘가',
+    desc: '상황 봐가며 나를 지킬 때와 곁을 챙길 때를 기가 막히게 구분하는 밸런스형이에요.\n두 태도 다 이미 당신 안에 있으니, 그때그때 꺼내 쓰면 그만입니다.',
+    ni: '나를 지키는 단단함,',
+    ca: '사람을 향한 다정함, 둘 다 이미 당신 겁니다.'
   }
 };
 
