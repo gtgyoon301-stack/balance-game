@@ -6,6 +6,7 @@
 <title>카네기 vs 니체 — 당신의 균형은?</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Noto+Sans+KR:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <style>
   :root{
     --niet-bg:#a9c6d8;
@@ -104,7 +105,7 @@
   .tt.c{background:var(--carn-bg); color:#ff8058; text-align:left;}
 
   .progress-row{
-    display:flex; gap:6px; padding:22px 24px 0;
+    display:flex; gap:4px; padding:18px 20px 0;
   }
   .dot{flex:1; height:4px; border-radius:2px; background:#ded5c2; overflow:hidden; position:relative;}
   .dot i{position:absolute; inset:0; transform:scaleX(0); transform-origin:left; transition:transform .3s ease;}
@@ -114,13 +115,13 @@
 
   .qnum{
     text-align:center; font-size:12px; letter-spacing:3px; color:#6b6046; font-weight:800;
-    padding:18px 0 6px;
+    padding:14px 0 6px;
   }
   .qtext{
     font-family:'Noto Sans KR', sans-serif;
     font-weight:800;
     text-align:center; font-size:clamp(19px,5.2vw,23px); line-height:1.5;
-    padding:0 26px 22px; color:var(--ink);
+    padding:0 26px 18px; color:var(--ink);
     word-break:keep-all;
   }
 
@@ -132,8 +133,8 @@
       flex:none;
       width:100%;
       max-width:460px;
-      height:400px;
-      margin:10px auto 0;
+      height:380px;
+      margin:6px auto 0;
       border-radius:24px;
       box-shadow:0 20px 50px rgba(0,0,0,0.2);
     }
@@ -182,7 +183,7 @@
   .res-eyebrow{font-size:12px; letter-spacing:3px; color:#6b6046; font-weight:800; margin-bottom:10px;}
   .res-headline{
     font-family:'Noto Sans KR', sans-serif; font-weight:900;
-    font-size:clamp(22px,5.8vw,27px); line-height:1.45; margin-bottom:22px;
+    font-size:clamp(21px,5.6vw,26px); line-height:1.45; margin-bottom:22px;
     word-break:keep-all;
   }
   .res-headline b{color:var(--carn-orange);}
@@ -228,9 +229,20 @@
   .buy.n{background:var(--niet-red); color:#fff;}
   .buy.c{background:var(--carn-orange); color:#fff;}
 
+  .share-btn{
+    width:100%; margin-top:22px; background:var(--carn-orange); color:#fff;
+    font-family:'Noto Sans KR'; font-weight:800; font-size:14px;
+    border:none; padding:16px; border-radius:12px; cursor:pointer;
+  }
+  .copy-btn{
+    width:100%; margin-top:10px; background:var(--ink); color:#fff;
+    font-family:'Noto Sans KR'; font-weight:700; font-size:13px;
+    border:none; padding:14px; border-radius:12px; cursor:pointer;
+  }
+
   .restart{
-    margin-top:26px; background:none; border:1.5px solid #b5a888; color:#5c5140; font-weight:700;
-    padding:10px 22px; border-radius:100px; font-size:12.5px; cursor:pointer;
+    margin-top:10px; width:100%; background:none; border:1.5px solid #b5a888; color:#5c5140; font-weight:700;
+    padding:12px 22px; border-radius:12px; font-size:13px; cursor:pointer;
   }
 
   .mbti-card{
@@ -264,7 +276,7 @@
     <div class="split-badge"><div class="half l">고독</div><div class="half r">인싸력</div></div>
     <div class="eyebrow">인생 밸런스 게임</div>
     <h1 class="title">당신은<br><b>카네기</b>형 인간?<br>아니면 <span>니체</span>형 인간?</h1>
-    <p class="sub">인생 갈림길 8번, 도망칠 곳은 없다<br>당신의 선택은 관계일까, 나 자신일까</p>
+    <p class="sub">인생 갈림길 12번, 도망칠 곳은 없다<br>당신의 선택은 관계일까, 나 자신일까</p>
     <button class="cta" onclick="startQuiz()">내 정체 밝히러 가기</button>
     <div class="meta">저장 안 되니 맘껏 솔직하게 · 1분 컷</div>
   </div>
@@ -276,7 +288,7 @@
       <div class="tt c">카네기 — <b id="caTicker"></b></div>
     </div>
     <div class="progress-row" id="progressRow"></div>
-    <div class="qnum" id="qnum">Q1 / 8</div>
+    <div class="qnum" id="qnum">Q1 / 12</div>
     <div class="qtext" id="qtext"></div>
     <div class="divide-wrap">
       <div class="opt left" id="optLeft" onclick="choose('n')">
@@ -296,38 +308,40 @@
   <!-- RESULT -->
   <div class="screen" id="result">
     <div class="res-inner">
-      <div class="res-eyebrow">당신의 정체는...</div>
-      <h1 class="res-headline" id="resHeadline"></h1>
-      <p class="res-desc" id="resDesc"></p>
+      <div id="shareCard">
+        <div class="res-eyebrow">당신의 정체는...</div>
+        <h1 class="res-headline" id="resHeadline"></h1>
+        <p class="res-desc" id="resDesc"></p>
 
-      <div class="gauge">
-        <div class="g gn" id="gaugeN">0%</div>
-        <div class="g gc" id="gaugeC">0%</div>
-      </div>
-      <div class="gauge-labels"><span>니체형</span><span>카네기형</span></div>
-
-      <div class="mbti-card" id="mbtiCard">
-        <div class="mbti-eyebrow">이 테스트로 본 나의 성향</div>
-        <div class="mbti-type" id="mbtiType"></div>
-        <ul class="mbti-lines" id="mbtiLines"></ul>
-        <div class="mbti-disclaimer">* 공식 MBTI 검사가 아닌, 이 테스트만의 재미 요소예요</div>
-      </div>
-
-      <div class="book-card">
-        <div class="book-cover n">불안한 날에<br>니체를 읽는다</div>
-        <div class="book-info">
-          <div class="bname">불안한 날에 니체를 읽는다</div>
-          <div class="bquote" id="niQuote"></div>
-          <span class="btag n">자아 · 불안</span>
+        <div class="gauge">
+          <div class="g gn" id="gaugeN">0%</div>
+          <div class="g gc" id="gaugeC">0%</div>
         </div>
-      </div>
+        <div class="gauge-labels"><span>니체형</span><span>카네기형</span></div>
 
-      <div class="book-card">
-        <div class="book-cover c">데일 카네기의<br>인간관계 수업</div>
-        <div class="book-info">
-          <div class="bname">데일 카네기의 인간관계 수업</div>
-          <div class="bquote" id="caQuote"></div>
-          <span class="btag c">관계 · 처세</span>
+        <div class="mbti-card" id="mbtiCard">
+          <div class="mbti-eyebrow">이 테스트로 본 나의 성향</div>
+          <div class="mbti-type" id="mbtiType"></div>
+          <ul class="mbti-lines" id="mbtiLines"></ul>
+          <div class="mbti-disclaimer">* 공식 MBTI 검사가 아닌, 이 테스트만의 재미 요소예요</div>
+        </div>
+
+        <div class="book-card">
+          <div class="book-cover n">불안한 날에<br>니체를 읽는다</div>
+          <div class="book-info">
+            <div class="bname">불안한 날에 니체를 읽는다</div>
+            <div class="bquote" id="niQuote"></div>
+            <span class="btag n">자아 · 불안</span>
+          </div>
+        </div>
+
+        <div class="book-card">
+          <div class="book-cover c">데일 카네기의<br>인간관계 수업</div>
+          <div class="book-info">
+            <div class="bname">데일 카네기의 인간관계 수업</div>
+            <div class="bquote" id="caQuote"></div>
+            <span class="btag c">관계 · 처세</span>
+          </div>
         </div>
       </div>
 
@@ -336,7 +350,9 @@
         <button class="buy c" onclick="window.open('https://product.kyobobook.co.kr/detail/S000220634221','_blank')">카네기 책 만나러 가기</button>
       </div>
 
-      <button class="restart" onclick="restart()">한 판 더 해보기</button>
+      <button class="share-btn" onclick="shareResult()">결과 이미지 저장 · 공유하기</button>
+      <button class="copy-btn" onclick="copyLink(event)">테스트 링크 복사하기</button>
+      <button class="restart" onclick="restart()">다시 진단하기</button>
     </div>
   </div>
 
@@ -351,7 +367,11 @@ const questions = [
   {q:"남들이 나를 어떻게 볼지", n:"1도 신경 안 쓴다", c:"은근히 계속 신경쓰인다", nL:'I', cL:'E'},
   {q:"친구가 확실히 틀렸다, 그럼 나는", n:"팩트로 끝까지 짚어준다", c:"굳이? 그냥 넘어간다", nL:'J', cL:'P'},
   {q:"낯선 사람 가득한 모임에 가면", n:"구석에서 조용히 관찰한다", c:"먼저 다가가 이름부터 외운다", nL:'N', cL:'S'},
-  {q:"진짜 힘든 하루 끝엔", n:"혼자 버티고 이겨낸다", c:"누군가 붙잡고 다 털어놓는다", nL:'N', cL:'S'}
+  {q:"진짜 힘든 하루 끝엔", n:"혼자 버티고 이겨낸다", c:"누군가 붙잡고 다 털어놓는다", nL:'N', cL:'S'},
+  {q:"약속 없는 주말이 생기면", n:"혼자만의 시간, 완전 좋다", c:"바로 누구 만날지 연락 돌린다", nL:'I', cL:'E'},
+  {q:"미래 계획 세울 때 나는", n:"큰 그림과 가능성부터 본다", c:"당장 할 수 있는 것부터 본다", nL:'N', cL:'S'},
+  {q:"중요한 결정을 내릴 때 나는", n:"손해봐도 원칙대로 간다", c:"사람 마음 안 다치게 조율한다", nL:'T', cL:'F'},
+  {q:"하루를 시작할 때 나는", n:"할 일 리스트부터 딱 정리한다", c:"일단 몸이 가는 대로 움직인다", nL:'J', cL:'P'}
 ];
 
 const niQuotes = [
@@ -362,7 +382,11 @@ const niQuotes = [
   "타인의 시선? 신경 끄시게",
   "침묵은 거짓에 대한 동의다",
   "군중 속의 고독을 즐겨라",
-  "혼자 버티는 밤이 널 만든다"
+  "혼자 버티는 밤이 널 만든다",
+  "혼자 있는 시간이 제일 크다",
+  "가능성 없인 재미도 없다",
+  "손해봐도 원칙은 원칙이다",
+  "계획 없인 하루도 없다"
 ];
 const caQuotes = [
   "일단 웃으면서 들어봐요",
@@ -372,7 +396,11 @@ const caQuotes = [
   "사람들 마음, 살짝 신경 써봐요",
   "굳이 이기려 하지 않아도 돼요",
   "이름 한 번 불러주면 마음 열려요",
-  "털어놓으면 반은 풀려요"
+  "털어놓으면 반은 풀려요",
+  "혼자 있지 말고 나와요",
+  "일단 되는 것부터 해봐요",
+  "사람 마음이 먼저죠",
+  "일단 몸부터 움직여봐요"
 ];
 
 let current = 0;
@@ -464,35 +492,52 @@ function computeMbti(){
   let type = '';
   let lines = [];
   pairs.forEach(([a,b])=>{
-    let winner;
-    const diff = mbti[a] - mbti[b];
-    if(diff > 0) winner = Math.random() < 0.8 ? a : b;
-    else if(diff < 0) winner = Math.random() < 0.8 ? b : a;
-    else winner = Math.random() < 0.5 ? a : b;
+    const winner = mbti[a] >= mbti[b] ? a : b;
     type += winner;
     lines.push(mbtiFlavor[winner]);
   });
   return {type, lines};
 }
 
+const moodPool = {
+  warm: ["기분좋은","다정한","유쾌한","따뜻한"],
+  cool: ["우울한","냉철한","고독한","예민한"],
+  neutral: ["담담한","차분한","오묘한"]
+};
+
+function pickMood(){
+  let pool;
+  if(mbti.F > mbti.T) pool = moodPool.warm;
+  else if(mbti.T > mbti.F) pool = moodPool.cool;
+  else pool = moodPool.neutral;
+  return pool[Math.floor(Math.random()*pool.length)];
+}
+
 const resultCopy = {
+  nietExtreme: {
+    desc: '거의 도인 수준으로 혼자 다 해결하는 타입이에요.\n위로도 조언도 딱히 안 필요하고, 그냥 시간이 약이라 믿는 사람.\n가끔은 그 벽, 살짝 낮춰도 아무도 뭐라 안 해요.',
+    ni: '이 정도면 거의 니체 본인. 산책하면서 생각 정리하는 거 잊지 마세요.',
+    ca: '진짜 딱 한 명한테라도 마음 좀 열어보는 거, 어때요.'
+  },
   niet: {
-    headline: '당신, <em>니체</em> 환생설 있음',
     desc: '흔들릴 때 남한테 안 기대고 혼자 답을 찾아버리는 타입이에요.\n남 시선 따위 가볍게 씹어드시고, 불안조차 성장 재료로 써버리는 사람.\n근데 그 단단함, 가끔은 옆사람을 좀 외롭게 만든다는 것도 알고 계시죠?',
     ni: '지금 필요한 건 버티는 힘 하나. 불안을 없애려 애쓰지 말고 그냥 옆에 앉혀두세요.',
     ca: '가끔은 못 이기는 척 마음 좀 열어도 안 죽어요. 오늘 하루는 먼저 손 내밀어보기.'
   },
+  balance: {
+    desc: '상황 봐가며 나를 지킬 때와 곁을 챙길 때를 기가 막히게 구분하는 밸런스형이에요.\n두 태도 다 이미 당신 안에 있으니, 그때그때 꺼내 쓰면 그만입니다.',
+    ni: '나를 지키는 단단함,',
+    ca: '사람을 향한 다정함, 둘 다 이미 당신 겁니다.'
+  },
   carn: {
-    headline: '당신은 인간관계 만렙, <b>카네기</b>형',
     desc: '사람 마음 읽는 데 도가 튼 타입이에요.\n관계 속에서 에너지를 얻고, 누군가를 챙기다 보면 저절로 내가 채워지는 사람이죠.\n근데 남 살피다가 정작 나는 늘 뒷전 아니었어요?',
     ca: '사람 챙기는 그 다정함, 그게 당신 최고의 무기예요. 오늘도 누군가의 이름 하나 기억해주세요.',
     ni: '가끔은 남 시선 훅 내려놓고, 오롯이 나한테만 집중하는 시간도 필요해요.'
   },
-  balance: {
-    headline: '당신은 <em>니체</em>와 <b>카네기</b> 그 어딘가',
-    desc: '상황 봐가며 나를 지킬 때와 곁을 챙길 때를 기가 막히게 구분하는 밸런스형이에요.\n두 태도 다 이미 당신 안에 있으니, 그때그때 꺼내 쓰면 그만입니다.',
-    ni: '나를 지키는 단단함,',
-    ca: '사람을 향한 다정함, 둘 다 이미 당신 겁니다.'
+  carnExtreme: {
+    desc: '거의 관계의 신 수준이에요.\n누구를 만나든 금방 친해지고, 주변 사람 기념일까지 다 챙기는 그런 사람.\n근데 정작 자기 마음은 언제 마지막으로 챙겼는지 기억나세요?',
+    ca: '이 정도면 이미 인간관계 마스터. 오늘도 누군가 당신 덕분에 웃었을 거예요.',
+    ni: '가끔은 약속 다 취소하고 오롯이 혼자 있는 날도 만들어보세요.'
   }
 };
 
@@ -503,6 +548,7 @@ function showResult(){
   const total = score.n + score.c;
   const nPct = Math.round((score.n/total)*100);
   const cPct = 100 - nPct;
+  const diff = nPct - cPct;
 
   setTimeout(()=>{
     $('gaugeN').style.flexBasis = nPct + '%';
@@ -511,12 +557,26 @@ function showResult(){
     $('gaugeC').textContent = cPct + '%';
   }, 100);
 
-  let copy;
-  if(nPct - cPct >= 25) copy = resultCopy.niet;
-  else if(cPct - nPct >= 25) copy = resultCopy.carn;
-  else copy = resultCopy.balance;
+  const mood = pickMood();
+  let copy, headline;
+  if(diff >= 50){
+    copy = resultCopy.nietExtreme;
+    headline = `${mood} <em>니체</em> 끝판왕`;
+  } else if(diff >= 20){
+    copy = resultCopy.niet;
+    headline = `${mood} <em>니체</em>형 인간`;
+  } else if(diff <= -50){
+    copy = resultCopy.carnExtreme;
+    headline = `${mood} <b>카네기</b> 끝판왕`;
+  } else if(diff <= -20){
+    copy = resultCopy.carn;
+    headline = `${mood} <b>카네기</b>형 인간`;
+  } else {
+    copy = resultCopy.balance;
+    headline = `${mood} <em>니체</em> × <b>카네기</b> 밸런스형`;
+  }
 
-  $('resHeadline').innerHTML = copy.headline;
+  $('resHeadline').innerHTML = headline;
   $('resDesc').textContent = copy.desc;
   $('niQuote').textContent = copy.ni;
   $('caQuote').textContent = copy.ca;
@@ -524,6 +584,45 @@ function showResult(){
   const m = computeMbti();
   $('mbtiType').textContent = m.type;
   $('mbtiLines').innerHTML = m.lines.map(l=>`<li>${l}</li>`).join('');
+}
+
+function copyLink(e){
+  const btn = e.target;
+  const old = btn.textContent;
+  navigator.clipboard.writeText(window.location.href).then(()=>{
+    btn.textContent = '복사 완료!';
+    setTimeout(()=>{ btn.textContent = old; }, 1500);
+  }).catch(()=>{
+    alert('복사에 실패했어요. 주소창의 링크를 직접 복사해주세요.');
+  });
+}
+
+function shareResult(){
+  const target = document.getElementById('shareCard');
+  if(typeof html2canvas === 'undefined'){
+    alert('이미지 저장 기능을 불러오지 못했어요. 인터넷 연결을 확인해주세요.');
+    return;
+  }
+  html2canvas(target, {backgroundColor:'#f4efe3', scale:2}).then(canvas=>{
+    canvas.toBlob(async (blob)=>{
+      if(!blob) return;
+      const file = new File([blob], 'balance-result.png', {type:'image/png'});
+      if(navigator.canShare && navigator.canShare({files:[file]})){
+        try{
+          await navigator.share({files:[file], title:'니체 vs 카네기 밸런스 테스트', text:'내 결과 확인해봐!'});
+          return;
+        }catch(e){ /* fall through to download */ }
+      }
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'balance-result.png';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+    });
+  });
 }
 
 function restart(){
