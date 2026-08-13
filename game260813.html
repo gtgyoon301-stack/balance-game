@@ -465,8 +465,9 @@ function computeMbti(){
   let lines = [];
   pairs.forEach(([a,b])=>{
     let winner;
-    if(mbti[a] > mbti[b]) winner = a;
-    else if(mbti[b] > mbti[a]) winner = b;
+    const diff = mbti[a] - mbti[b];
+    if(diff > 0) winner = Math.random() < 0.8 ? a : b;
+    else if(diff < 0) winner = Math.random() < 0.8 ? b : a;
     else winner = Math.random() < 0.5 ? a : b;
     type += winner;
     lines.push(mbtiFlavor[winner]);
